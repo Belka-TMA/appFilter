@@ -15,7 +15,6 @@ class Filter extends React.Component {
     }
   }
   formattingData(data){
-    if (data.length > 0) {
       var contextToSend = {};
       data.map((user,index)=>{ //Boucler dans tout les objet
         Object.keys(user).map((key,index)=>{ //Boucler dans chaque cle de chaque objet
@@ -49,18 +48,19 @@ class Filter extends React.Component {
         },this)
       },this)
       return contextToSend
-    }
   }
   returnFilter(filt,value){
-
-    this.props.filterInput({ [filt] : value})
+    let filterModified = {...this.props.returninFilter,[filt] : value}
+    this.props.filterInput(filterModified)
   }
   componentDidMount() {
-    if(this.props.data.length > 0){
+    if(this.state.loading && this.props.data.length != 0){
       this.setState({
         context : this.formattingData(this.props.data),
         loading : false,
       });
+    }else{
+        console.log('loading')
     }
 
   }

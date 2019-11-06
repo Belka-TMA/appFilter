@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import Filter from './component/Filter.js';
+import { Tullets, TulletContent} from './component/Tullet.js';
 
 const mainTheme = createMuiTheme({
   palette: {
@@ -306,20 +307,19 @@ class App extends React.Component {
     super(props);
     this.state ={
       data : [],
-      coachToDisplay : {},
+      filters : this.settingFilters(),
     }
   this.filterInput = this.filterInput.bind(this)
+  this.dataToExploit = this.dataToExploit.bind(this)
   }
-  componentDidMount() {
+  settingFilters(){
     var filterToKeep = {}
     if(this.props.filter.length > 0){
       this.props.filter.map((e)=>{
             filterToKeep[e] = null
         })
     }
-    this.setState({
-      coachToDisplay : {...filterToKeep}
-    })
+    return {...filterToKeep}
   }
   fetchingData(){
     fetch('media/microsite/5aconseil/coachApp/data.json',
@@ -335,7 +335,9 @@ class App extends React.Component {
       });
   }
   filterInput(data){
-    console.log(data)
+    this.setState({
+      filters : data
+    })
   }
   dataToExploit(){
     var toGoData = [...testJson];
@@ -343,7 +345,7 @@ class App extends React.Component {
         toGoData[index].prestations = strinData.prestations.split(',').map(function(item) {
           return item.trim();
         });
-    /*
+
         toGoData[index].secteur = strinData.secteur.split(",").map(function(item) {
           return item.trim();
         });
@@ -352,9 +354,18 @@ class App extends React.Component {
         });
         toGoData[index].accompagnement = strinData.accompagnement.split(",").map(function(item) {
           return item.trim();
-        });*/
+        });
     })
-  return toGoData
+    this.setState({
+      data : toGoData
+    })
+  }
+  componentDidMount() {
+    if(this.state.data.length <= 0){
+      this.dataToExploit()
+    }else{
+      console.log('pas de données')
+    }
   }
   render(){
       return(
@@ -363,10 +374,14 @@ class App extends React.Component {
               <p>Coach 5aconseil</p>
           </header>
           <section className="App-filter sectionWrapper">
-            <Filter data={this.dataToExploit()} filterInput={this.filterInput} returninFilter={this.state.coachToDisplay} filtre={['prestations','secteur','disponibilite','experience','formation','certification','accompagnement']}/>
+              {this.state.data.length &&   <Filter data={this.state.data} filterInput={this.filterInput} returninFilter={this.state.filters} filtre={['prestations','secteur','disponibilite','experience','formation','certification','accompagnement']}/>}
           </section>
           <section className="App-list sectionWrapper">
-
+              {this.state.data.length &&
+              <Tullets content={this.state.data} filter={[]} >
+                  <TulletContent></TulletContent>
+              </Tullets>
+            }
           </section>
         </div>
       );
