@@ -1,4 +1,22 @@
 import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Fab from '@material-ui/core/Fab';
+function TempForCoach(props){
+  return(<div className={'tullet'}>
+             <Avatar alt="Remy Sharp" src="/images.jpeg" className={'section avatara'} />
+              <div className={'section coach'}><h5>{props.don.nom} {props.don.prenom} </h5>{props.don.prestations.map((el,i)=>{return <p key={i}><i>{el}</i></p>})}</div>
+              <div className={'section accompagnement'}>{props.don.accompagnement.map((el,i)=>{return <p key={i}>{el}</p>})}</div>
+              <div className={'section secteurs'}>{props.don.secteur.map((el,i)=>{return <p key={i}>{el}</p>})}</div>
+              <div className={'section'}><p>{props.don.formation}</p><p>{props.don.certification}</p></div>
+              <div className={'section'}>
+              <Fab variant="extended" aria-label="like" className={'buttonAppointment'}>
+                      Prendre rendez vous
+                </Fab>
+              </div>
+        </div>)
+}
+
+
 
 function TulletSection(props){
     if(typeof props.content === 'string'){
@@ -31,7 +49,7 @@ class TulletContent extends React.Component {
   }
   render() {
     let dataTo = Object.keys(this.props.data).map((element,i)=>{
-        return( <TulletSection key={i} title={element} content={this.props.data[element]} />)
+        return( <TempForCoach key={i} title={element} content={this.props.data[element]} />)
       })
     return (
       <div className="tullet">
@@ -63,7 +81,6 @@ class Tullets extends React.Component {
     let filterToAdd = this.testFonction()
     let content = this.props.content
 
-
     let dataoToReturn = content.filter((el,index)=>{
       for(let i = 0; i < filterToAdd.length; i++){
           return el[filterToAdd[i]].indexOf(this.props.filters[filterToAdd[i]]) != -1
@@ -71,27 +88,11 @@ class Tullets extends React.Component {
 
     })
 
-  console.log(dataoToReturn)
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 
     return (
         <div className="tulletWrapper">
@@ -107,6 +108,11 @@ class Tullets extends React.Component {
 
           }
         </div>
+        )*/
+    return(
+            this.props.content.map((data,i)=>{
+              return <div key={i} className={'tulletWrapper'}><TempForCoach don={data} /></div>
+          })
         )
     }
 }
