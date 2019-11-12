@@ -21,6 +21,7 @@
   background-color: rgba(255,124,23,0.8);
   color: white;
   max-width: 100vw;
+  height: 200px;
 }
 
 .App-link {
@@ -30,12 +31,35 @@
   display: flex;
   max-width: 100vw;
   flex-wrap: wrap;
-  justify-content: center;
-
+}
+#filter-wrapper{
+  width : 80%;
+  margin : 0 auto;
+  display: flex;
 }
 .cacahuete{
-  margin : 10px;
-
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+.autocomplete{
+  margin : 5px;
+}
+.filter-title{
+  font-size: 24px;
+  width: 15%;
+  margin-top: 20px;
+}
+.cacahuete>*{
+  color : #fff!important;
+}
+.MuiInputBase-input{
+  width : auto!important;
+}
+.cacahuete .MuiSvgIcon-root {
+  fill :white!important;
+}
+fieldset{
+  border : none!important;
 }
 .tulletWrapper{
     width: 80%;
@@ -56,7 +80,7 @@
     font-size: calc(10px + 1vmin);
 }
 .section{
-
+width: 15%;
 }
 .coach{
   text-align: left;

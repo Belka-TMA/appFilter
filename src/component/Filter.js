@@ -66,13 +66,17 @@ class Filter extends React.Component {
   }
   render(){
     return(
+      <div id="filter-wrapper"><p className="filter-title">Filtrer par :</p>
       <div id='filterMainKing'>
         {
             this.state.loading ?
               (<p>loading</p>)
             :
             this.props.filtre.map((filter,index)=>{
-            return (<Autocomplete
+            return (
+
+            <Autocomplete
+              className='autocomplete'
               key={index}
               onChange={(filter,value)=>{ this.returnFilter(this.props.filtre[index],value) }}
               options={this.state.context[filter]}
@@ -88,6 +92,7 @@ class Filter extends React.Component {
               )}
             />)},this)
         }
+        </div>
       </div>
     )
 

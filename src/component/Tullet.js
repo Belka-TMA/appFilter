@@ -62,61 +62,30 @@ class TulletContent extends React.Component {
 class Tullets extends React.Component {
   constructor(props){
     super(props)
-    this.state={
-      filterOn : []
-    }
-  this.testFonction = this.testFonction.bind(this)
   }
-  testFonction(){
-    let filterToAdd = [];
-     Object.keys(this.props.filters).map((key,i)=>{
-        if(this.props.filters[key] != null){
-          filterToAdd.push(key)
-        }
-    })
-    return filterToAdd
-  }
-
   render() {
-    let filterToAdd = this.testFonction()
-    let content = this.props.content
 
-    let dataoToReturn = content.filter((el,index)=>{
-      for(let i = 0; i < filterToAdd.length; i++){
-          return el[filterToAdd[i]].indexOf(this.props.filters[filterToAdd[i]]) != -1
-        }
-
-    })
+    return(<div className={'tulletWrapper'}>
 
 
-
-
-
-/*
-
-    return (
-        <div className="tulletWrapper">
-          {
-            this.props.content.map((data,i)=>{
-              return React.Children.map(this.props.children, (child, i) => {
-                return React.cloneElement(child, {
-                    data:data
-                  })
+{            this.props.filteredData.length === 0 ?
+            (
+              this.props.content.map((dataToExploit,i)=>{
+                return  <TempForCoach key={i} don={dataToExploit} />
               })
+            )
+            :
+            (
+            this.props.filteredData.map((dataToExploit,i)=>{
+                return <TempForCoach key={i} don={dataToExploit} />
+              })
+            )
 
-          })
+}
+</div>
+)
 
-          }
-        </div>
-        )*/
-    return(
-            this.props.content.map((data,i)=>{
-              return <div key={i} className={'tulletWrapper'}><TempForCoach don={data} /></div>
-          })
-        )
+
     }
 }
-
-
-
 export { Tullets, TulletContent, TulletSection};
