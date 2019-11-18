@@ -65,6 +65,7 @@ class Filter extends React.Component {
 
   }
   render(){
+
     return(
       <div id="filter-wrapper"><p className="filter-title">Filtrer par :</p>
       <div id='filterMainKing'>
@@ -79,7 +80,7 @@ class Filter extends React.Component {
               className='autocomplete'
               key={index}
               onChange={(filter,value)=>{ this.returnFilter(this.props.filtre[index],value) }}
-              options={this.state.context[filter]}
+              options={filter === "disponibilite" ? ['La semaine', 'Le samedi'] : this.state.context[filter]}
               style={{ width: 300, color : 'white' }}
               renderInput={params => (
                 <TextField
