@@ -459,7 +459,7 @@ class App extends React.Component {
               {this.state.data.length &&   <Filter data={this.state.data} filterInput={this.filterInput} returninFilter={this.state.filters} filtre={['prestations','secteur','disponibilite','experience','certification','accompagnement']}/>}
           </section>
           <section className="App-list sectionWrapper">
-          <ExpansionPanel className="semaine">
+          <ExpansionPanel className="semaine" defaultExpanded >
             <ExpansionPanelSummary
 
                 expandIcon={<ExpandMoreIcon />}

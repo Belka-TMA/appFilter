@@ -1,9 +1,12 @@
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
+}
+.App-list {
+  width : 80%;
+  margin: 0 auto;
 }
 .sectionWrapper>div{
   display: flex;
@@ -11,16 +14,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-.semaine{
-  width: calc(80% - 60px);
-  padding-left: 60px;
-  margin : 0 auto;
-}
-.samedi{
-  width: calc(80% - 60px);
-  padding-left: 60px;
-  margin : 0 auto;
 }
 .semaine-title{
   text-align: left;
@@ -31,7 +24,6 @@
   padding-bottom : 10px;
   color: white;
   margin-bottom: -5px;
-  max-height : 10px;
 }
 .App-header {
   background-color: white;
@@ -45,7 +37,6 @@
   height: 200px;
   display: flex;
 }
-
 .App-link {
   color: #09d3ac;
 }
@@ -89,13 +80,20 @@
 fieldset{
   border : none!important;
 }
-.tulletWrapper{
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+.MuiExpansionPanelSummary-content>h4{
+  color: white;
+  background-color: rgba(255,124,23,0.8)    ;
+  width: calc(100% - 60px);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 60px;
+  margin : 0 auto;
 }
-
+.tulletWrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .subsection{
   height: 35px;
   background-color:rgba(255,124,23,0.8);
@@ -172,7 +170,6 @@ fieldset{
 .experience{
   font-size: 18px;
   text-align:left;
-
 }
 .coach>h5{
   margin : 0px;
@@ -180,11 +177,9 @@ fieldset{
 }
 .prestations{
   margin : 10px 0px;
-
 }
 .prestations>li{
   font-size : 16px;
-
 }
 .prestations>h3{
   font-size : 18px;
@@ -233,9 +228,7 @@ fieldset{
   font-size : 16px;
 }
 .secteurs>h3{
-
   font-size : 18px;
-
 }
 .MuiPaper-elevation1{
     box-shadow: none!important
